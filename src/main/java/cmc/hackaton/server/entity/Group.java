@@ -34,6 +34,14 @@ public class Group {
     @JoinColumn(name = "group_leader_id", nullable = false)
     private Member groupLeader;
 
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_history_id", nullable = false)
+    private List<GroupHistory> groupHistory;
+
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
+    @JoinColumn(name = "vote_id", nullable = false)
+    private List<Vote> vote;
+
     @Column(nullable = false)
     private String groupName;
 
