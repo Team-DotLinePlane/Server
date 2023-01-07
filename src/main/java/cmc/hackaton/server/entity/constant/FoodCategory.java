@@ -1,8 +1,5 @@
 package cmc.hackaton.server.entity.constant;
 
-import lombok.Getter;
-
-@Getter
 public enum FoodCategory {
 
     JOKBAL_BOSSAM,      // 족발, 보쌈
