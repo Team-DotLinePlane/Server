@@ -44,9 +44,12 @@ public class Vote {
     @OneToMany(mappedBy = "vote", cascade = CascadeType.ALL)
     private final List<VoteHistory> voteHistories = new ArrayList<>();
 
+    private Boolean isCompleted;
+
     @Builder
     private Vote(Team team, LocalDateTime expiredTime) {
         this.team = team;
         this.expiredTime = expiredTime;
+        this.isCompleted = false;
     }
 }
