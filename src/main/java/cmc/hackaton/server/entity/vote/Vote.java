@@ -26,6 +26,10 @@ public class Vote {
     @ManyToOne(fetch = FetchType.LAZY)
     private Team team;
 
+    @JoinColumn(name = "vote_leader_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    private Member voteLeader;
+
     // 투표 결과로 선택된 category
     // 투표 종료 후 값을 설정할 것이므로 nullable
     @Enumerated(EnumType.STRING)

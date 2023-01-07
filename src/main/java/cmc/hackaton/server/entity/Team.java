@@ -1,5 +1,6 @@
 package cmc.hackaton.server.entity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -38,6 +39,8 @@ public class Team {
 
     @Column(nullable = false, unique = true)
     private String teamCode;
+
+    private LocalDateTime mealTime;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private final List<TeamHistory> teamHistory = new ArrayList<>();
