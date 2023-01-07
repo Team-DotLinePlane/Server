@@ -39,18 +39,18 @@ public class FCMHandler {
 //        FirebaseApp.initializeApp(options);
 
         // This registration token comes from the client FCM SDKs.
-        String registrationToken = "e6DAgWdBRnW_-LkACoyEMf:APA91bFAUnat8KayRMpbYRi9xhPhUXE_Hdh8efd-1B9e3v8KGn3JguR5oi4ACJ7-gGWfQ4pdsGfX2vXeqDdWgc2D_aq3gVd919i7YuAYqsx8xrDosVD1STs1ly79gIPSx2UK7nrU1qn3";
-
-        FirebaseMessaging firebaseMessaging = firebaseMessaging();
-
-        Message message = Message.builder()
-            .putData("score", "850")
-            .putData("time", "2:45")
-            .setToken(registrationToken)
-            .build();
-
-        String response = firebaseMessaging.send(message);
-        System.out.println("Successfully sent message: " + response);
+//        String registrationToken = "e6DAgWdBRnW_-LkACoyEMf:APA91bFAUnat8KayRMpbYRi9xhPhUXE_Hdh8efd-1B9e3v8KGn3JguR5oi4ACJ7-gGWfQ4pdsGfX2vXeqDdWgc2D_aq3gVd919i7YuAYqsx8xrDosVD1STs1ly79gIPSx2UK7nrU1qn3";
+//
+//        FirebaseMessaging firebaseMessaging = firebaseMessaging();
+//
+//        Message message = Message.builder()
+//            .putData("score", "850")
+//            .putData("time", "2:45")
+//            .setToken(registrationToken)
+//            .build();
+//
+//        String response = firebaseMessaging.send(message);
+//        System.out.println("Successfully sent message: " + response);
 
         // See documentation on defining a message payload.
 
