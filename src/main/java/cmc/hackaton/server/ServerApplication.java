@@ -13,14 +13,5 @@ public class ServerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ServerApplication.class, args);
-
-        FCMHandler fcmHandler = new FCMHandler();
-        try {
-            fcmHandler.init();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (FirebaseMessagingException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
