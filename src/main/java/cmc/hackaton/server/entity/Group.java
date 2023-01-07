@@ -26,7 +26,7 @@ public class Group {
     private Long id;
 
 
-    @OneToMany()
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     @JoinColumn(name = "group_members_id", nullable = false)
     private List<GroupMembers> groupMembers;
 
