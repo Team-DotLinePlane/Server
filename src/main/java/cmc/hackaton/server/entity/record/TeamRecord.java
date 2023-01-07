@@ -1,4 +1,4 @@
-package cmc.hackaton.server.entity.history;
+package cmc.hackaton.server.entity.record;
 
 import cmc.hackaton.server.entity.Team;
 import lombok.AccessLevel;
@@ -11,13 +11,13 @@ import javax.persistence.*;
 @DiscriminatorValue("Team")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class TeamHistory extends History {
+public class TeamRecord extends Record {
 
     @JoinColumn(name = "team_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Team team;
 
-    public TeamHistory(Team team) {
+    public TeamRecord(Team team) {
         this.team = team;
     }
 }

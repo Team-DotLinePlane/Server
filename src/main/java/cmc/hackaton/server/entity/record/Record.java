@@ -1,4 +1,4 @@
-package cmc.hackaton.server.entity.history;
+package cmc.hackaton.server.entity.record;
 
 import cmc.hackaton.server.common.exception.BadRequestException;
 import cmc.hackaton.server.entity.Member;
@@ -14,7 +14,7 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "DTYPE")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class History {
+public abstract class Record {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,17 +23,17 @@ public abstract class History {
     @Column(nullable = false)
     private String selectedMenu;
 
-    public static History of(Object type, String selectedMenu) {
+    public static Record of(Object type, String selectedMenu) {
         if (type instanceof Member) {
-            return new MemberHistory((Member) type);
+            return new MemberRecord((Member) type);
         } else if (type instanceof Team) {
-            return new TeamHistory((Team) type);
+            return new TeamRecord((Team) type);
         } else {
-            throw new BadRequestException("History를 생성하는데 필요한 정보가 잘못되었습니다.");
+            throw new BadRequestException("기록을 생성하는데 필요한 정보가 잘못되었습니다.");
         }
     }
 
-    private History(String selectedMenu) {
+    private Record(String selectedMenu) {
         this.selectedMenu = selectedMenu;
     }
 }

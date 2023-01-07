@@ -1,4 +1,4 @@
-package cmc.hackaton.server.entity.history;
+package cmc.hackaton.server.entity.record;
 
 import cmc.hackaton.server.entity.Member;
 import lombok.AccessLevel;
@@ -11,13 +11,13 @@ import javax.persistence.*;
 @DiscriminatorValue("Member")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MemberHistory extends History {
+public class MemberRecord extends Record {
 
     @JoinColumn(name = "member_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    public MemberHistory(Member member) {
+    public MemberRecord(Member member) {
         this.member = member;
     }
 }
