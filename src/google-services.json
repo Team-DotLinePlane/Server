@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "209531163722",
+    "project_id": "cmc-server-bb7c1",
+    "storage_bucket": "cmc-server-bb7c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:209531163722:android:255f346340f3d3e78b02b3",
+        "android_client_info": {
+          "package_name": "com.example.dlp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "209531163722-2k7o3hjk6jqlhk9h93ek8f0pt1ftn46a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dlp",
+            "certificate_hash": "51ba0a851cf6d64f4b630cd682667092daad8748"
+          }
+        },
+        {
+          "client_id": "209531163722-0ndtstij4gheefq4147ovdfq02041lk8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVBDFjrD2durbK2xAljiwR195oVVSUbz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "209531163722-0ndtstij4gheefq4147ovdfq02041lk8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
