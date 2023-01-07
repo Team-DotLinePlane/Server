@@ -4,6 +4,7 @@ package cmc.hackaton.server.entity;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -23,30 +26,26 @@ import lombok.NoArgsConstructor;
 public class GroupHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "group_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     private Group group;
 
-    @OneToOne
-    @JoinColumn(name = "menu_category_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     private MenuCategory menuCategory;
 
-    @Column(name = "created_at", nullable = false)
-    private LocalDateTime created_at;
+    @Column(nullable = false)
+    @CreatedDate
+    private LocalDateTime createdAt;
 
 
     @Builder
-    private GroupHistory(Group group, MenuCategory menuCategory, LocalDateTime created_at) {
+    private GroupHistory(Group group, MenuCategory menuCategory) {
         this.group = group;
         this.menuCategory = menuCategory;
-        this.created_at = created_at;
     }
 
-    @PrePersist
-    public void prePersist() {
-        this.created_at = LocalDateTime.now();
-    }
 }

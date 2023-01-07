@@ -2,6 +2,7 @@ package cmc.hackaton.server.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,14 +23,14 @@ public class Group {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_leader_id", nullable = false)
     private Member groupLeader;
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String groupName;
 
-    @Column(name = "group_code", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String groupCode;
 
     @Builder
