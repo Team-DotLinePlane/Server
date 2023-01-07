@@ -39,6 +39,8 @@ public class MemberHistory {
         this.menuCategory = menuCategory;
         this.created_at = created_at;
     }
+
+
 }
 
 
