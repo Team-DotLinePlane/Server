@@ -6,8 +6,15 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.Message;
 import java.io.FileInputStream;
+<<<<<<< HEAD
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
+=======
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
+>>>>>>> a723591 (feat: FCM 푸시 알림 베이스코드 작성)
 
 @Slf4j
 public class FCMHandler {
