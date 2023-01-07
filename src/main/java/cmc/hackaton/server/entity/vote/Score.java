@@ -26,12 +26,12 @@ public class Score {
     private FoodCategory category;
 
     @Column(nullable = false)
-    private int value;
+    private int point;
 
     @Builder
     private Score(VoteHistory voteHistory, FoodCategory category) {
         this.voteHistory = voteHistory;
         this.category = category;
-        this.value = 0;
+        this.point = 0;
     }
 }
