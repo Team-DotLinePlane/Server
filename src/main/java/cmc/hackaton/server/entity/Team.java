@@ -42,6 +42,8 @@ public class Team {
 
     private LocalDateTime mealTime;
 
+    private Boolean isAlarmActive;
+
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private final List<TeamHistory> teamHistory = new ArrayList<>();
 
@@ -56,5 +58,6 @@ public class Team {
         this.teamLeader = teamLeader;
         this.teamName = teamName;
         this.teamCode = teamCode;
+        this.isAlarmActive = false;
     }
 }
