@@ -23,7 +23,7 @@ public class TeamWithMembersResponse {
     private LocalTime mealTime;
 
     private Boolean isAlarmActive;
-    private List<MemberResponse> memberDtos;
+    private List<MemberResponse> memberResponses;
 
     public static TeamWithMembersResponse of(Long teamId, String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, List<MemberResponse> memberDtos) {
         return new TeamWithMembersResponse(teamId, teamName,teamCode, mealTime, isAlarmActive, memberDtos);
