@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,7 +24,7 @@ public class Team {
     @Column(nullable = false, unique = true)
     private String teamCode;
 
-    private LocalDateTime mealTime;
+    private LocalTime mealTime;
 
     @Column(nullable = false)
     private Boolean isAlarmActive;
