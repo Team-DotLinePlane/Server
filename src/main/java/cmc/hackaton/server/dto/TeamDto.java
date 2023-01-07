@@ -19,13 +19,15 @@ public class TeamDto {
 
     private Boolean isAlarmActive;
 
-    public static TeamDto of(String teamName, String teamCode) {
-        return new TeamDto(teamName, teamCode, null, null);
+    public static TeamDto of(String teamName) {
+        return new TeamDto(teamName, null, null, null);
     }
 
     public static TeamDto of(String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive) {
         return new TeamDto(teamName, teamCode, mealTime, isAlarmActive);
     }
+
+
 
     public static TeamDto from(Team team) {
         return new TeamDto(
