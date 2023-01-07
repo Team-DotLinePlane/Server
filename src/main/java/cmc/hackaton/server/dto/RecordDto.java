@@ -4,6 +4,8 @@ import cmc.hackaton.server.dto.response.RecordResponse;
 import cmc.hackaton.server.entity.Member;
 import cmc.hackaton.server.entity.Team;
 import cmc.hackaton.server.entity.record.MemberRecord;
+import cmc.hackaton.server.entity.record.Record;
+import cmc.hackaton.server.entity.record.TeamRecord;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,22 +17,23 @@ import java.util.List;
 @Getter
 public class RecordDto {
 
-    private Member member;
-
-    private Team team;
-
     private String dtype;
 
     private String selectedMenu;
-    private List<RecordResponse> recordList;
 
-    public static RecordDto of(String selectedMenu) {
-        return new RecordDto(null, null, null, selectedMenu, null);
+    private static RecordDto of(Record record, String selectedMenu) {
+        if (record instanceof MemberRecord) {
+            return new RecordDto("member", selectedMenu);
+        } else {
+            return new RecordDto("team", selectedMenu);
+        }
     }
 
-    public static RecordDto from(MemberRecord memberRecord) {
-        return new RecordDto(
-        );
+    public static RecordDto from(Record record) {
+        return RecordDto.of(
+            record,
+            record.getSelectedMenu()
+            );
     }
 
 }

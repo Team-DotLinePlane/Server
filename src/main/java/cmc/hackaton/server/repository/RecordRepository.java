@@ -11,4 +11,6 @@ import java.util.Optional;
 
 public interface RecordRepository extends JpaRepository<Record, Long> {
     List<Record> findAllRecords(String token);
+
+    List<Record> findAllByMember(Member member);
 }

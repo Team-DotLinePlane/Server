@@ -1,16 +1,16 @@
 package cmc.hackaton.server.service;
 
 import cmc.hackaton.server.common.exception.member.MemberNotFoundException;
+import cmc.hackaton.server.dto.RecordDto;
 import cmc.hackaton.server.entity.Member;
 import cmc.hackaton.server.entity.record.Record;
 import cmc.hackaton.server.repository.MemberRepository;
 import cmc.hackaton.server.repository.RecordRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Arrays;
-import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -32,12 +32,12 @@ public class RecordService {
         return token;
     }
 
-    public Arrays findAllRecords(String token) {
+    public List<RecordDto> findAllRecords(String token) {
         Member member = memberRepository.findByToken(token)
                 .orElseThrow(MemberNotFoundException::new);
-        List<Record> recordList = recordRepository.findAllByMember(member);
-
-        return (Arrays) recordList;
+        return recordRepository.findAllByMember(member).stream()
+            .map(RecordDto::from)
+            .collect(Collectors.toList());
 
     }
 
