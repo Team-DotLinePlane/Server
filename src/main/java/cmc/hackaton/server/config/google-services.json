@@ -1,47 +1,12 @@
 {
-  "project_info": {
-    "project_number": "209531163722",
-    "project_id": "cmc-server-bb7c1",
-    "storage_bucket": "cmc-server-bb7c1.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:209531163722:android:255f346340f3d3e78b02b3",
-        "android_client_info": {
-          "package_name": "com.example.dlp"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "209531163722-2k7o3hjk6jqlhk9h93ek8f0pt1ftn46a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.dlp",
-            "certificate_hash": "51ba0a851cf6d64f4b630cd682667092daad8748"
-          }
-        },
-        {
-          "client_id": "209531163722-0ndtstij4gheefq4147ovdfq02041lk8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAVBDFjrD2durbK2xAljiwR195oVVSUbz4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "209531163722-0ndtstij4gheefq4147ovdfq02041lk8.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    }
-  ],
-  "configuration_version": "1"
+  "type": "service_account",
+  "project_id": "cmc-server-bb7c1",
+  "private_key_id": "83983502106d72ccb4312b21002faabea7dbd974",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCeO4ifwzYeIzoQ\no+bvYCCgp/TjnqbfhQn9KDvP624PGi+RZ/AodKrgehCL4LCSwpCb0+LCePEFIqh/\nXpWhhy4b20tZz2doJd0ITOYjWlBQQxmZZ3d1c5NOMQhqwFG9UhWbq1hkSbc1gqTc\n1tHFQ3elhI6On/FKP7qjAxtVmOIODmShDfXLiOnkUkh26wkGNU92G4NNMt5LAF+m\nQ58Fm9nbgvjRP1o1SMb1JesuScTiiVNfb7NSDQ6VEu8azXqoT/0AQW2EW2IV2t69\n7VF+ZVz9UptSLkYRhNNprY8rQJQFJcmiMiESBeADeriY+0pZKtJD9AJcHilbE5gA\nGDjNM6YzAgMBAAECggEABMI/mqZxUzi1/1gekuZuNMa4W7wiwqgqo715BwjKl5Ov\nCI16sIzJstSY+Mv6I3/Mf5NAx56BiSkArkv27hO1tErFGl9declhu2UsqrWFotRR\nycZN1m9yZ7Cb0zITg0Ebu0HM978rzmUudiHTzz33NDgnXWy8AgKmp05pnQprCgci\noJfFRyvlxjTJnpBbcalgJtYI0inEj8sN3w+AgFy/tbQLrhMeT9NUpOj9A2aM6t3n\ncD4YRrI4mDZOQIhriKA5rGnFMzgzwmnkOlbtHwGK7gfrtCzKQIzVJLnj4GM8lEyi\nyTwZFnnT0XWmoxutoYFHS2ZtVClNptmCeQEyq/ivcQKBgQDdOxzmeGSKLHz4rT1t\n1W9Vs4j7mSEDEwJ1nNAmy3bD2AGsgT3Mn081kHzIrlFSr6njL5FMl4T40s1EZmOR\nLriTT4IhP1lnAZRO59+GK6QmiarQElXWTP2EsrCGZinolm5KXnXxG96bvpe9/NiG\nvcbPKiB5+S0F1mbpLSBCYg0LWwKBgQC3GcdBE925dDiQrw4bxcXet4IUV2Lwclv+\nSKfel8IbBTmuv5odojr31wF3Ih8cKWodLCmqjgwCOFlZSfO1pUN4J4hoU19enqWN\nmR5cBaXQzvuaZp3Nwk882SSzRUTIU6xQ6b20PPNnsKD8VGY1GeimJWwNDQHJv8Af\noDodfc7ACQKBgQC6CUahTGaHhyfEWrJIlW4dbG9p2/hVxHuR+b9UkE6cHB40OS6F\nzwXl7k3w2B3M4amEQXD3LoeEUoiI120tHlPalMbCPKpqo3pa7EQcaMCOI8B/XpvO\nLUoXd8hYDLt7Ol0ertaRXbVR1PF3s5NFo3r2pN9QkshYm1ZJCUiSai+79wKBgQCC\nU973+2P+9TKuCWxJaGSHOqdkQy8xZrUEMkMKtYp8ISQFtmvEXA0NDAUG/0qViQT2\n7tBZjfIOQn2WiITn7lIv3DPDzlQ7zUCZoTty1LJKBoogRJpeMsijzwvIbq2eybAF\nh9p3yEqYq6hq8sgtU9u9JzXZtEBpkgr2d93lz/6xwQKBgH5wt8vD/zezfbILyits\nksNcyW4zw16XZvo5Zw3rerQCnRoHOrsh1RZ9LCm1eXmUI2zlyzpYifmlZed2jCvC\nPqbqvfjF75Qe+H/YocE0QOiB7TEpuCZyMncW7zuxNFf1N7mS+L+A2qFMPVdm/inK\npdwXOvnTVNrH37srhR8EhXnd\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-szgnc@cmc-server-bb7c1.iam.gserviceaccount.com",
+  "client_id": "100430130553655949279",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-szgnc%40cmc-server-bb7c1.iam.gserviceaccount.com"
 }
