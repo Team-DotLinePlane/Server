@@ -24,15 +24,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
 @Getter
-public class GroupHistory {
+public class TeamHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id", nullable = false)
-    private Group group;
+    @JoinColumn(name = "team_id", nullable = false)
+    private Team team;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_category_id", nullable = false)
@@ -45,8 +45,8 @@ public class GroupHistory {
 
 
     @Builder
-    private GroupHistory(Group group, MenuCategory menuCategory) {
-        this.group = group;
+    private TeamHistory(Team team, MenuCategory menuCategory) {
+        this.team = team;
         this.menuCategory = menuCategory;
     }
 
