@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import cmc.hackaton.server.entity.vote.Vote;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,22 +29,21 @@ public class Group {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "group_members_id", nullable = false)
-    private final List<GroupMembers> groupMembers = new ArrayList<>();
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_leader_id", nullable = false)
     private Member groupLeader;
+
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "vote_id", nullable = false)
+    private final List<Vote> vote = new ArrayList<>();
 
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "group_history_id", nullable = false)
     private final List<GroupHistory> groupHistory = new ArrayList<>();
 
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "vote_id", nullable = false)
-    private final List<Vote> vote = new ArrayList<>();
-
+    @JoinColumn(name = "group_members_id", nullable = false)
+    private final List<GroupMembers> groupMembers = new ArrayList<>();
     @Column(nullable = false)
     private String groupName;
 
