@@ -1,6 +1,7 @@
 package cmc.hackaton.server.common.exception;
 
 import cmc.hackaton.server.common.exception.member.MemberNotFoundException;
+import cmc.hackaton.server.common.exception.team.TeamNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -17,12 +18,9 @@ public enum ExceptionType {
 
     // Member
     MEMBER_NOT_FOUND_EXCEPTION("2001", "존재하지 않는 회원입니다.", MemberNotFoundException.class),
-//    EMAIL_FORMAT_EXCEPTION("2002", "이메일 형식이 맞지 않습니다.", EmailFormatException.class),
-//    EMAIL_DUPLICATE_EXCEPTION("2003", "이미 사용중인 이메일입니다.", EmailDuplicateException.class),
-//
-//    NICKNAME_NULL_OR_EMPTY_EXCEPTION("2004", "회원의 이름은 한 글자 이상이어야 합니다.", NicknameNullOrEmptyException.class),
-//    NICKNAME_TOO_LONG_EXCEPTION("2005", "회원의 이름은 255자를 초과할 수 없습니다.", NicknameTooLongException.class),
-//    NICKNAME_DUPLICATE_EXCEPTION("2006", "이미 사용중인 이름입니다.", NicknameDuplicateException.class),
+
+    // Team
+    TEAM_NOT_FOUND_EXCEPTION("3001", "존재하지 않는 그룹입니다.", TeamNotFoundException.class),
     ;
 
     private final String errorCode;

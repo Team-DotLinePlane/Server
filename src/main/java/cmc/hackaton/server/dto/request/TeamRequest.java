@@ -12,10 +12,11 @@ import java.time.LocalTime;
 @Getter
 public class TeamRequest {
 
+    private String memberToken;
     private String teamName;
 
-    public static TeamRequest of(String teamName) {
-        return new TeamRequest(teamName);
+    public static TeamRequest of(String memberToken, String teamName) {
+        return new TeamRequest(memberToken, teamName);
     }
 
     public TeamDto toDto() {

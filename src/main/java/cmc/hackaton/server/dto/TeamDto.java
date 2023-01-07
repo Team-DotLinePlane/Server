@@ -38,7 +38,7 @@ public class TeamDto {
         );
     }
 
-    public Team toEntity() {
+    public Team toEntity(String teamCode) {
         return Team.builder()
                 .teamName(teamName)
                 .teamCode(teamCode)

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -29,10 +30,22 @@ public class Team {
     @Column(nullable = false)
     private Boolean isAlarmActive;
 
+    @OneToMany(mappedBy = "team")
+    private List<TeamMember> teamMembers;
+
     @Builder
     private Team(String teamName, String teamCode) {
         this.teamName = teamName;
         this.teamCode = teamCode;
+        this.mealTime = LocalTime.of(12, 0);
         this.isAlarmActive = false;
+    }
+
+    public void addTeamMember(Member member) {
+        getTeamMembers().add(
+                TeamMember.builder()
+                        .member(member)
+                        .team(this)
+                        .build());
     }
 }
