@@ -1,8 +1,11 @@
 package cmc.hackaton.server.entity;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,7 +13,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
 public class MemberHistory {
 
     @Id
@@ -18,29 +22,26 @@ public class MemberHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @Column(nullable = false)
-    @OneToOne
-    @JoinColumn(name = "menu_category_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_category_id", nullable = false)
     private MenuCategory menuCategory;
 
     @Column(nullable = false, updatable = false)
     @DateTimeFormat( iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
-    public MemberHistory(Long id, Member member, MenuCategory menuCategory, LocalDateTime created_at) {
+    @Builder
+    private MemberHistory(Long id, Member member, MenuCategory menuCategory, LocalDateTime createdAt) {
         this.id = id;
         this.member = member;
         this.menuCategory = menuCategory;
-        this.created_at = created_at;
+        this.createdAt = createdAt;
     }
-
-
 }
 
 
