@@ -1,5 +1,6 @@
 package cmc.hackaton.server.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,10 +26,9 @@ public class Group {
     @Column(name = "id", nullable = false)
     private Long id;
 
-
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     @JoinColumn(name = "group_members_id", nullable = false)
-    private List<GroupMembers> groupMembers;
+    private final List<GroupMembers> groupMembers = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_leader_id", nullable = false)
@@ -36,11 +36,11 @@ public class Group {
 
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     @JoinColumn(name = "group_history_id", nullable = false)
-    private List<GroupHistory> groupHistory;
+    private final List<GroupHistory> groupHistory = new ArrayList<>();
 
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     @JoinColumn(name = "vote_id", nullable = false)
-    private List<Vote> vote;
+    private final List<Vote> vote = new ArrayList<>();
 
     @Column(nullable = false)
     private String groupName;
