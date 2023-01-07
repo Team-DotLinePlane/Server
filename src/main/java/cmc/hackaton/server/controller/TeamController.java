@@ -1,5 +1,6 @@
 package cmc.hackaton.server.controller;
 
+import cmc.hackaton.server.dto.request.TeamJoinRequest;
 import cmc.hackaton.server.dto.request.TeamRequest;
 import cmc.hackaton.server.dto.response.TeamListResponse;
 import cmc.hackaton.server.dto.response.TeamResponse;
@@ -55,12 +56,13 @@ public class TeamController {
         );
     }
 
-//    @Operation(
-//            summary = "그룹 참여",
-//            description = "`token`에 해당하는 그룹에 참여한다"
-//    )
-//    @PutMapping
-//    public ResponseEntity<TeamJoinResponse> joinGroup(@RequestBody TeamJoinRequest request) {
-//        return ResponseEntity.ok(TeamJoinResponse.from(teamService.joinTeam(request)));
-//    }
+    @Operation(
+            summary = "그룹 참여",
+            description = "`token`에 해당하는 유저가 `teamCode`에 해당하는 그룹에 참여한다."
+    )
+    @PutMapping
+    public ResponseEntity<Void> joinTeam(@RequestBody TeamJoinRequest request) {
+        teamService.joinTeam(request.getToken(), request.getTeamCode());
+        return ResponseEntity.noContent().build();
+    }
 }
