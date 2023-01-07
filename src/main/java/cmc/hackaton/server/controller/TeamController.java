@@ -60,7 +60,7 @@ public class TeamController {
             summary = "그룹 참여",
             description = "`token`에 해당하는 유저가 `teamCode`에 해당하는 그룹에 참여한다."
     )
-    @PutMapping
+    @PostMapping("/join")
     public ResponseEntity<Void> joinTeam(@RequestBody TeamJoinRequest request) {
         teamService.joinTeam(request.getToken(), request.getTeamCode());
         return ResponseEntity.noContent().build();
