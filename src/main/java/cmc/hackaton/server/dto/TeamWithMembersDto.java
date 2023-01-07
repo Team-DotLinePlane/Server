@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Getter
 public class TeamWithMembersDto {
 
+    private Long teamId;
     private String teamName;
 
     private String teamCode;
@@ -25,12 +26,13 @@ public class TeamWithMembersDto {
 
     private List<MemberDto> memberDtos;
 
-    public static TeamWithMembersDto of(String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, List<MemberDto> memberDtos) {
-        return new TeamWithMembersDto(teamName, teamCode, mealTime, isAlarmActive, memberDtos);
+    public static TeamWithMembersDto of(Long teamId, String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, List<MemberDto> memberDtos) {
+        return new TeamWithMembersDto(teamId, teamName, teamCode, mealTime, isAlarmActive, memberDtos);
     }
 
     public static TeamWithMembersDto from(Team team) {
         return new TeamWithMembersDto(
+                team.getId(),
                 team.getTeamName(),
                 team.getTeamCode(),
                 team.getMealTime(),
@@ -40,12 +42,5 @@ public class TeamWithMembersDto {
                         .map(MemberDto::from)
                         .collect(Collectors.toList())
         );
-    }
-
-    public Team toEntity() {
-        return Team.builder()
-                .teamName(teamName)
-                .teamCode(teamCode)
-                .build();
     }
 }

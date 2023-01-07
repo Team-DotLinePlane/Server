@@ -12,6 +12,8 @@ import java.time.LocalTime;
 @Getter
 public class TeamResponse {
 
+    private Long teamId;
+
     private String teamName;
 
     private String teamCode;
@@ -20,13 +22,20 @@ public class TeamResponse {
 
     private Boolean isAlarmActive;
 
-    public static TeamResponse of(String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive) {
-        return new TeamResponse(teamName,teamCode, mealTime, isAlarmActive);
+    private int numOfMembers;
+
+    public static TeamResponse of(Long teamId, String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, int numOfMembers) {
+        return new TeamResponse(teamId, teamName,teamCode, mealTime, isAlarmActive, numOfMembers);
     }
 
     public static TeamResponse from(TeamDto dto) {
         return new TeamResponse(
-                dto.getTeamName(), dto.getTeamCode(), dto.getMealTime(), dto.getIsAlarmActive()
+                dto.getTeamId(),
+                dto.getTeamName(),
+                dto.getTeamCode(),
+                dto.getMealTime(),
+                dto.getIsAlarmActive(),
+                dto.getNumOfMembers()
         );
     }
 }

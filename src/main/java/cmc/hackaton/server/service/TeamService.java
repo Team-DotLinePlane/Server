@@ -4,6 +4,7 @@ import cmc.hackaton.server.common.exception.member.MemberNotFoundException;
 import cmc.hackaton.server.common.exception.team.TeamNotFoundException;
 import cmc.hackaton.server.dto.TeamDto;
 import cmc.hackaton.server.dto.TeamWithMembersDto;
+import cmc.hackaton.server.entity.Member;
 import cmc.hackaton.server.entity.Team;
 import cmc.hackaton.server.repository.MemberRepository;
 import cmc.hackaton.server.repository.TeamMemberRepository;
@@ -46,11 +47,20 @@ public class TeamService {
         do {
             teamCode = UUID.randomUUID().toString().substring(0, 4).toUpperCase();
         } while (teamRepository.existsByTeamCode(teamCode));
-        
+
         Team team = dto.toEntity(teamCode);
         team.addTeamMember(memberRepository.getByToken(memberToken));
         teamRepository.save(team);
         return TeamDto.from(team);
+    }
+
+    @Transactional
+    public void joinTeam(String memberToken, String teamCode) {
+        Team team = teamRepository.findByTeamCode(teamCode)
+                .orElseThrow(TeamNotFoundException::new);
+        Member member = memberRepository.findByToken(memberToken)
+                .orElseThrow(MemberNotFoundException::new);
+        team.addTeamMember(member);
     }
 
     private void validateMemberToken(String memberToken) {

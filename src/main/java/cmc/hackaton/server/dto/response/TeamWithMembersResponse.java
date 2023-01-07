@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Getter
 public class TeamWithMembersResponse {
 
+    private Long teamId;
     private String teamName;
 
     private String teamCode;
@@ -24,12 +25,13 @@ public class TeamWithMembersResponse {
     private Boolean isAlarmActive;
     private List<MemberResponse> memberDtos;
 
-    public static TeamWithMembersResponse of(String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, List<MemberResponse> memberDtos) {
-        return new TeamWithMembersResponse(teamName,teamCode, mealTime, isAlarmActive, memberDtos);
+    public static TeamWithMembersResponse of(Long teamId, String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, List<MemberResponse> memberDtos) {
+        return new TeamWithMembersResponse(teamId, teamName,teamCode, mealTime, isAlarmActive, memberDtos);
     }
 
     public static TeamWithMembersResponse from(TeamWithMembersDto dto) {
         return new TeamWithMembersResponse(
+                dto.getTeamId(),
                 dto.getTeamName(),
                 dto.getTeamCode(),
                 dto.getMealTime(),
