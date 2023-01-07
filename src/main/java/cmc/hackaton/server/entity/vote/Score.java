@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Rank {
+public class Score {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Rank {
     private int value;
 
     @Builder
-    private Rank(VoteHistory voteHistory, FoodCategory category) {
+    private Score(VoteHistory voteHistory, FoodCategory category) {
         this.voteHistory = voteHistory;
         this.category = category;
         this.value = 0;

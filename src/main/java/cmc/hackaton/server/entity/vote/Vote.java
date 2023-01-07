@@ -1,6 +1,6 @@
 package cmc.hackaton.server.entity.vote;
 
-import cmc.hackaton.server.entity.Group;
+import cmc.hackaton.server.entity.Team;
 import cmc.hackaton.server.entity.Member;
 import cmc.hackaton.server.entity.constant.FoodCategory;
 import lombok.AccessLevel;
@@ -22,9 +22,9 @@ public class Vote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "team_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Group group;
+    private Team team;
 
     // 투표 결과로 선택된 category
     // 투표 종료 후 값을 설정할 것이므로 nullable
@@ -41,8 +41,8 @@ public class Vote {
     private final List<VoteHistory> voteHistories = new ArrayList<>();
 
     @Builder
-    private Vote(Group group, LocalDateTime expiredTime) {
-        this.group = group;
+    private Vote(Team team, LocalDateTime expiredTime) {
+        this.team = team;
         this.expiredTime = expiredTime;
     }
 }

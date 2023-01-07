@@ -30,7 +30,7 @@ public class VoteHistory {
     // TODO: 어떤 Collection type이 적절한지 고려 필요
     // TODO: Entity 생성 시 초기화 필요
     @OneToMany(mappedBy = "voteHistory", cascade = CascadeType.ALL)
-    private final Set<Rank> ranks = new HashSet<>();
+    private final Set<Score> scores = new HashSet<>();
 
     @Builder
     private VoteHistory(Vote vote, Member member) {
@@ -39,8 +39,8 @@ public class VoteHistory {
 
         // Entity 생성 시 <각 category : 0>의 값을 갖는 Set 생성.
         Arrays.stream(FoodCategory.values())
-                .forEach(foodCategory -> ranks.add(
-                        Rank.builder()
+                .forEach(foodCategory -> scores.add(
+                        Score.builder()
                                 .voteHistory(this)
                                 .category(foodCategory)
                                 .build()

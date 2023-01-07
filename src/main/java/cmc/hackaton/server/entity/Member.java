@@ -2,7 +2,6 @@ package cmc.hackaton.server.entity;
 
 
 import cmc.hackaton.server.entity.vote.Vote;
-import cmc.hackaton.server.entity.vote.VoteHistory;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,9 +21,8 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vote_id")
+    @JoinColumn(name = "vote_id", nullable = false)
     private Vote vote;
 
     @Column(nullable = false, unique = true)
@@ -34,7 +32,7 @@ public class Member {
     private String nickname;
 
     @OneToMany(mappedBy = "member")
-    private final List<GroupMembers> groupMembers = new ArrayList<>();
+    private final List<TeamMembers> teamMembers = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private final List<MemberHistory> memberHistories = new ArrayList<>();
