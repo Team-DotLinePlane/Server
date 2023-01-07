@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface TeamMemberRepository extends JpaRepository<TeamMember, Long> {
 
     List<TeamMember> findAllByMember_Token(String token);
+
+    List<TeamMember> findAllByTeam_Id(Long team_id);
 }
