@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,7 +32,7 @@ public class Team {
     private Boolean isAlarmActive;
 
     @OneToMany(mappedBy = "team")
-    private List<TeamMember> teamMembers;
+    private final List<TeamMember> teamMembers = new ArrayList<>();
 
     @Builder
     private Team(String teamName, String teamCode) {

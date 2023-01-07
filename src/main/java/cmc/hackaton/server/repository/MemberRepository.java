@@ -10,4 +10,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByToken(String token);
 
     Member getByToken(String token);
+
+    boolean existsByToken(String token);
 }
