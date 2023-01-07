@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 public class TeamListResponse {
 
-    private List<TeamResponse> teamResponses;
+    private List<TeamResponse> teamList;
 
     public static TeamListResponse of(List<TeamResponse> teamResponses) {
         return new TeamListResponse(teamResponses);

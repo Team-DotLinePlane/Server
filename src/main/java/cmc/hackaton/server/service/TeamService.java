@@ -6,6 +6,7 @@ import cmc.hackaton.server.dto.TeamDto;
 import cmc.hackaton.server.dto.TeamWithMembersDto;
 import cmc.hackaton.server.entity.Member;
 import cmc.hackaton.server.entity.Team;
+import cmc.hackaton.server.entity.TeamMember;
 import cmc.hackaton.server.repository.MemberRepository;
 import cmc.hackaton.server.repository.TeamMemberRepository;
 import cmc.hackaton.server.repository.TeamRepository;
@@ -49,7 +50,14 @@ public class TeamService {
         } while (teamRepository.existsByTeamCode(teamCode));
 
         Team team = dto.toEntity(teamCode);
-        team.addTeamMember(memberRepository.getByToken(memberToken));
+        Member member = memberRepository.findByToken(memberToken)
+                .orElseThrow(MemberNotFoundException::new);
+        TeamMember teamMember = TeamMember.builder()
+                .member(member)
+                .team(team)
+                .build();
+        teamMemberRepository.save(teamMember);
+        team.addTeamMember(teamMember);
         teamRepository.save(team);
         return TeamDto.from(team);
     }
@@ -60,7 +68,12 @@ public class TeamService {
                 .orElseThrow(TeamNotFoundException::new);
         Member member = memberRepository.findByToken(memberToken)
                 .orElseThrow(MemberNotFoundException::new);
-        team.addTeamMember(member);
+        TeamMember teamMember = TeamMember.builder()
+                .member(member)
+                .team(team)
+                .build();
+        teamMemberRepository.save(teamMember);
+        team.addTeamMember(teamMember);
     }
 
     private void validateMemberToken(String memberToken) {

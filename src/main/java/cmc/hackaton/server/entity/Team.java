@@ -42,11 +42,7 @@ public class Team {
         this.isAlarmActive = false;
     }
 
-    public void addTeamMember(Member member) {
-        getTeamMembers().add(
-                TeamMember.builder()
-                        .member(member)
-                        .team(this)
-                        .build());
+    public void addTeamMember(TeamMember teamMember) {
+        getTeamMembers().add(teamMember);
     }
 }
