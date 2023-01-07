@@ -1,15 +1,12 @@
 package cmc.hackaton.server.entity;
 
 
-import cmc.hackaton.server.entity.vote.Vote;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -19,28 +16,17 @@ public class Member {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vote_id", nullable = false)
-    private Vote vote;
+    private Long id;
 
     @Column(nullable = false, unique = true)
-    private String identifier;  // 익명 유저의 UUID, OAuth 도입 시 email 병행 저장
+    private String identifier;  // 익명 유저의 UUID
 
     @Column(nullable = false)
     private String nickname;
 
-    @OneToMany(mappedBy = "member")
-    private final List<TeamMembers> teamMembers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private final List<MemberHistory> memberHistories = new ArrayList<>();
-
     @Builder
-    private Member(String identifier, String nickname, Vote vote) {
+    private Member(String identifier, String nickname) {
         this.identifier = identifier;
         this.nickname = nickname;
-        this.vote = vote;
     }
 }

@@ -1,7 +1,5 @@
-package cmc.hackaton.server.entity.vote;
+package cmc.hackaton.server.entity;
 
-import cmc.hackaton.server.entity.Team;
-import cmc.hackaton.server.entity.Member;
 import cmc.hackaton.server.entity.constant.FoodCategory;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,8 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -38,18 +34,15 @@ public class Vote {
     @Column(nullable = false)
     private LocalDateTime expiredTime;  // TODO: LocalTime으로 전환 고려
 
-    @OneToMany(mappedBy = "vote")
-    private final List<Member> members = new ArrayList<>();
-
-    @OneToMany(mappedBy = "vote", cascade = CascadeType.ALL)
-    private final List<VoteHistory> voteHistories = new ArrayList<>();
-
     private Boolean isCompleted;
 
     @Builder
-    private Vote(Team team, LocalDateTime expiredTime) {
+
+    private Vote(Team team, Member voteLeader, FoodCategory selectedFoodCategory, LocalDateTime expiredTime, Boolean isCompleted) {
         this.team = team;
+        this.voteLeader = voteLeader;
+        this.selectedFoodCategory = selectedFoodCategory;
         this.expiredTime = expiredTime;
-        this.isCompleted = false;
+        this.isCompleted = isCompleted;
     }
 }

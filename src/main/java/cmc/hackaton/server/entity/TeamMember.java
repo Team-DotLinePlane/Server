@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class TeamMembers {
+public class TeamMember {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -31,7 +31,7 @@ public class TeamMembers {
     private Member member;
 
     @Builder
-    private TeamMembers(Team team, Member member) {
+    private TeamMember(Team team, Member member) {
         this.team = team;
         this.member = member;
     }
