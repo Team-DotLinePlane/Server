@@ -3,8 +3,10 @@ package cmc.hackaton.server.dto.request;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Getter
 public class TeamJoinRequest {
 
