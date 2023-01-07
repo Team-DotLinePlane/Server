@@ -11,6 +11,8 @@ import java.time.LocalTime;
 @Getter
 public class TeamDto {
 
+    private Long teamId;
+
     private String teamName;
 
     private String teamCode;
@@ -18,23 +20,20 @@ public class TeamDto {
     private LocalTime mealTime;
 
     private Boolean isAlarmActive;
+    private Integer numOfMembers;
 
     public static TeamDto of(String teamName) {
-        return new TeamDto(teamName, null, null, null);
+        return new TeamDto(null, teamName, null, null, null, null);
     }
-
-    public static TeamDto of(String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive) {
-        return new TeamDto(teamName, teamCode, mealTime, isAlarmActive);
-    }
-
-
 
     public static TeamDto from(Team team) {
         return new TeamDto(
+                team.getId(),
                 team.getTeamName(),
                 team.getTeamCode(),
                 team.getMealTime(),
-                team.getIsAlarmActive()
+                team.getIsAlarmActive(),
+                team.getTeamMembers().size()
         );
     }
 

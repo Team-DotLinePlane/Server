@@ -46,7 +46,7 @@ public class TeamService {
         do {
             teamCode = UUID.randomUUID().toString().substring(0, 4).toUpperCase();
         } while (teamRepository.existsByTeamCode(teamCode));
-        
+
         Team team = dto.toEntity(teamCode);
         team.addTeamMember(memberRepository.getByToken(memberToken));
         teamRepository.save(team);
