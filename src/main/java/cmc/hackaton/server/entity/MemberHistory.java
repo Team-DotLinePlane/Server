@@ -33,14 +33,14 @@ public class MemberHistory {
     @Column(nullable = false, updatable = false)
     @DateTimeFormat( iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Builder
-    private MemberHistory(Long id, Member member, MenuCategory menuCategory, LocalDateTime created_at) {
+    private MemberHistory(Long id, Member member, MenuCategory menuCategory, LocalDateTime createdAt) {
         this.id = id;
         this.member = member;
         this.menuCategory = menuCategory;
-        this.created_at = created_at;
+        this.createdAt = createdAt;
     }
 }
 
