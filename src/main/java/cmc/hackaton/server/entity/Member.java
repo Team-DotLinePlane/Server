@@ -1,10 +1,7 @@
 package cmc.hackaton.server.entity;
 
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -21,6 +18,7 @@ public class Member {
     @Column(nullable = false, unique = true)
     private String token;  // 익명 유저의 UUID
 
+    @Setter
     @Column(nullable = false)
     private String nickname;
 
