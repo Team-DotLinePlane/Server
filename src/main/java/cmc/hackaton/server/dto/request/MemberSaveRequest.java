@@ -4,15 +4,16 @@ import cmc.hackaton.server.dto.MemberDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor  // @RequestBody에서 쓰려면 default constructor가 있어야 한다.
 @Getter
-public class MemberRequest {
-
+public class MemberSaveRequest {
     private String token;
 
-    public static MemberRequest of(String token) {
-        return new MemberRequest(token);
+    public static MemberSaveRequest of(String token) {
+        return new MemberSaveRequest(token);
     }
 
     public MemberDto toDto() {

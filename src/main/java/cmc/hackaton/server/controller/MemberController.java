@@ -1,6 +1,7 @@
 package cmc.hackaton.server.controller;
 
-import cmc.hackaton.server.dto.request.MemberRequest;
+import cmc.hackaton.server.dto.request.MemberUpdateRequest;
+import cmc.hackaton.server.dto.request.MemberSaveRequest;
 import cmc.hackaton.server.dto.response.MemberResponse;
 import cmc.hackaton.server.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,7 +33,7 @@ public class MemberController {
             description = "App 설치 후 처음 진입 시 (FCM)`token`을 전달하면 해당 기기의 유저를 서버에 등록한다."
     )
     @PostMapping
-    public ResponseEntity<Void> saveMember(@RequestBody MemberRequest request) {
+    public ResponseEntity<Void> saveMember(@RequestBody MemberSaveRequest request) {
         memberService.saveMember(request.toDto());
         return ResponseEntity.noContent().build();
     }
@@ -42,11 +43,8 @@ public class MemberController {
             description = "`token`에 해당하는 유저의 닉네임을 수정한다."
     )
     @PutMapping
-    public ResponseEntity<Void> updateMemberNickname(
-            @RequestBody String token,
-            @RequestBody String nickname
-    ) {
-        memberService.updateMemberNickname(token, nickname);
+    public ResponseEntity<Void> updateMemberNickname(@RequestBody MemberUpdateRequest request) {
+        memberService.updateMemberNickname(request.toDto());
         return ResponseEntity.noContent().build();
     }
 }

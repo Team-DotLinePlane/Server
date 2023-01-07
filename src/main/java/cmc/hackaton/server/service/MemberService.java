@@ -27,9 +27,9 @@ public class MemberService {
     }
 
     @Transactional
-    public void updateMemberNickname(String token, String nickname) {
-        Member member = getMember(token);
-        member.setNickname(nickname);
+    public void updateMemberNickname(MemberDto dto) {
+        Member member = getMember(dto.getToken());
+        member.setNickname(dto.getNickname());
     }
 
     private Member getMember(String token) {
