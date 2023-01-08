@@ -23,9 +23,10 @@ public class TeamResponse {
     private Boolean isAlarmActive;
 
     private int numOfMembers;
+    private Boolean isVoteProgress;
 
-    public static TeamResponse of(Long teamId, String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, int numOfMembers) {
-        return new TeamResponse(teamId, teamName,teamCode, mealTime, isAlarmActive, numOfMembers);
+    public static TeamResponse of(Long teamId, String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, int numOfMembers, boolean isVoteProgress) {
+        return new TeamResponse(teamId, teamName,teamCode, mealTime, isAlarmActive, numOfMembers, isVoteProgress);
     }
 
     public static TeamResponse from(TeamDto dto) {
@@ -35,7 +36,8 @@ public class TeamResponse {
                 dto.getTeamCode(),
                 dto.getMealTime(),
                 dto.getIsAlarmActive(),
-                dto.getNumOfMembers()
+                dto.getNumOfMembers(),
+                dto.getIsVoteProgress()
         );
     }
 }

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -32,20 +33,34 @@ public class TeamService {
     private final VoteRepository voteRepository;
 
     public TeamWithMembersDto findTeam(Long teamId) {
-        Vote vote = voteRepository.findByTeam_IdOrderByIdDesc(teamId)
-                .orElseThrow(VoteNotFoundException::new);
+        boolean isVoteProgress = false;
+        Long voteId = -1L;
+        Optional<Vote> voteOptional = voteRepository.findByTeam_IdOrderByIdDesc(teamId);
+        if (voteOptional.isPresent()) {
+            Vote vote = voteOptional.get();
+            isVoteProgress = !vote.getIsCompleted();
+            voteId = vote.getId();
+        }
 
         return TeamWithMembersDto.from(
                 teamRepository.findById(teamId)
                         .orElseThrow(TeamNotFoundException::new),
-                !vote.getIsCompleted(),
-                vote.getId()
+                isVoteProgress,
+                voteId
         );
     }
 
     public List<TeamDto> findAllTeams(String token) {
         return teamMemberRepository.findAllByMember_Token(token).stream()
-                .map(teamMember -> TeamDto.from(teamMember.getTeam()))
+                .map(teamMember -> {
+                    boolean isVoteProgress = false;
+                    Optional<Vote> voteOptional = voteRepository.findByTeam_IdOrderByIdDesc(teamMember.getTeam().getId());
+                    if (voteOptional.isPresent()) {
+                        Vote vote = voteOptional.get();
+                        isVoteProgress = !vote.getIsCompleted();
+                    }
+                    return TeamDto.from(teamMember.getTeam(), isVoteProgress);
+                })
                 .collect(Collectors.toList());
     }
 
@@ -68,7 +83,7 @@ public class TeamService {
         teamMemberRepository.save(teamMember);
         team.addTeamMember(teamMember);
         teamRepository.save(team);
-        return TeamDto.from(team);
+        return TeamDto.from(team, false);
     }
 
     @Transactional

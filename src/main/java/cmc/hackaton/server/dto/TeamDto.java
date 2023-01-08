@@ -21,19 +21,21 @@ public class TeamDto {
 
     private Boolean isAlarmActive;
     private Integer numOfMembers;
+    private Boolean isVoteProgress;
 
     public static TeamDto of(String teamName) {
-        return new TeamDto(null, teamName, null, null, null, null);
+        return new TeamDto(null, teamName, null, null, null, null, null);
     }
 
-    public static TeamDto from(Team team) {
+    public static TeamDto from(Team team, boolean isVoteProgress) {
         return new TeamDto(
                 team.getId(),
                 team.getTeamName(),
                 team.getTeamCode(),
                 team.getMealTime(),
                 team.getIsAlarmActive(),
-                team.getTeamMembers().size()
+                team.getTeamMembers().size(),
+                isVoteProgress
         );
     }
 

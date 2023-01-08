@@ -29,8 +29,6 @@ public class VoteController {
     )
     @PostMapping("/start")
     public ResponseEntity<Void> startNewVote(@RequestBody VoteStartRequest request) {
-        Arrays.stream(FoodCategory.values())
-                .forEach(foodCategory -> System.out.println("foodCategory = " + foodCategory));
         voteService.startNewVote(request.getMemberToken(), request.getTeamId());
         return ResponseEntity.noContent().build();
     }
