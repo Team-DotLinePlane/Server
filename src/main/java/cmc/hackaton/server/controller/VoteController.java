@@ -30,6 +30,7 @@ public class VoteController {
     @PostMapping("/start")
     public ResponseEntity<Void> startNewVote(@RequestBody VoteStartRequest request) {
         voteService.startNewVote(request.getMemberToken(), request.getTeamId());
+
         return ResponseEntity.noContent().build();
     }
 

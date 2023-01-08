@@ -1,5 +1,6 @@
 package cmc.hackaton.server.service;
 
+import cmc.hackaton.server.common.FCMHandler;
 import cmc.hackaton.server.common.exception.member.MemberNotFoundException;
 import cmc.hackaton.server.common.exception.team.TeamNotFoundException;
 import cmc.hackaton.server.common.exception.vote.VoteNotFoundException;
@@ -33,6 +34,8 @@ public class VoteService {
     private final VotePointRepository votePointRepository;
     private final VoteMemberRepository voteMemberRepository;
 
+    private final TeamMemberRepository teamMemberRepository;
+
     @Transactional
     public void startNewVote(String memberToken, Long teamId) {
         Team team = teamRepository.findById(teamId)
@@ -55,6 +58,13 @@ public class VoteService {
                     vote.addVotePoint(votePoint);
                 });
         voteRepository.save(vote);
+
+        List<TeamMember> allByTeamId = teamMemberRepository.findAllByTeam_Id(teamId);
+
+        // noti for all user in team
+        allByTeamId.forEach(teamMember -> {
+            FCMHandler.notiMealTime(teamMember.getMember().getToken());
+        });
 
 //        VoteMember voteMember = VoteMember.builder()
 //                .member(member)
