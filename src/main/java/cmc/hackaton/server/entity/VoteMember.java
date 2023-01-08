@@ -17,21 +17,20 @@ public class VoteMember {
     private Long id;
 
     @JoinColumn(name = "member_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Member member;
 
     @JoinColumn(name = "vote_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Vote vote;
 
     @Column(nullable = false)
     private boolean isVoted;
 
     @Builder
-
-    private VoteMember(Member member, Vote vote) {
+    private VoteMember(Member member, Vote vote, boolean isVoted) {
         this.member = member;
         this.vote = vote;
-        this.isVoted = false;
+        this.isVoted = isVoted;
     }
 }

@@ -1,13 +1,15 @@
 package cmc.hackaton.server.entity;
 
 import cmc.hackaton.server.entity.constant.FoodCategory;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -28,21 +30,29 @@ public class Vote {
 
     // 투표 결과로 선택된 category
     // 투표 종료 후 값을 설정할 것이므로 nullable
+    @Setter
     @Enumerated(EnumType.STRING)
     private FoodCategory selectedFoodCategory;
 
     @Column(nullable = false)
-    private LocalDateTime expiredTime;  // TODO: LocalTime으로 전환 고려
+    private LocalDateTime expiredTime;
 
+    @Setter
     private Boolean isCompleted;
 
-    @Builder
+    @OneToMany(mappedBy = "vote", cascade = CascadeType.ALL)
+    private final List<VotePoint> votePointList = new ArrayList<>();
 
-    private Vote(Team team, Member voteLeader, FoodCategory selectedFoodCategory, LocalDateTime expiredTime, Boolean isCompleted) {
+    @Builder
+    private Vote(Team team, Member voteLeader, LocalDateTime expiredTime) {
         this.team = team;
         this.voteLeader = voteLeader;
-        this.selectedFoodCategory = selectedFoodCategory;
         this.expiredTime = expiredTime;
-        this.isCompleted = isCompleted;
+        this.isCompleted = false;
+    }
+
+    public void addVotePoint(VotePoint votePoint) {
+        getVotePointList().add(votePoint);
+        votePoint.setVote(this);
     }
 }

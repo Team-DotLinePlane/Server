@@ -24,19 +24,24 @@ public class TeamWithMembersDto {
 
     private Boolean isAlarmActive;
 
+    private Boolean isVoteProgress;
+    private Long voteId;
+
     private List<MemberDto> memberDtos;
 
-    public static TeamWithMembersDto of(Long teamId, String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, List<MemberDto> memberDtos) {
-        return new TeamWithMembersDto(teamId, teamName, teamCode, mealTime, isAlarmActive, memberDtos);
+    public static TeamWithMembersDto of(Long teamId, String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, Boolean isVoteProgress, Long voteId, List<MemberDto> memberDtos) {
+        return new TeamWithMembersDto(teamId, teamName, teamCode, mealTime, isAlarmActive, isVoteProgress, voteId, memberDtos);
     }
 
-    public static TeamWithMembersDto from(Team team) {
+    public static TeamWithMembersDto from(Team team, Boolean isVoteProgress, Long voteId) {
         return new TeamWithMembersDto(
                 team.getId(),
                 team.getTeamName(),
                 team.getTeamCode(),
                 team.getMealTime(),
                 team.getIsAlarmActive(),
+                isVoteProgress,
+                voteId,
                 team.getTeamMembers().stream()
                         .map(TeamMember::getMember)
                         .map(MemberDto::from)

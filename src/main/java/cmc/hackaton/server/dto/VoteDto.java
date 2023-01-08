@@ -38,9 +38,7 @@ public class VoteDto {
         return Vote.builder()
                 .team(team)
                 .voteLeader(voteLeader)
-                .selectedFoodCategory(selectedFoodCategory)
                 .expiredTime(expiredTime)
-                .isCompleted(isCompleted)
                 .build();
     }
 }

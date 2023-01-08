@@ -23,10 +23,12 @@ public class TeamWithMembersResponse {
     private LocalTime mealTime;
 
     private Boolean isAlarmActive;
+    private Boolean isVoteProgress;
+    private Long voteId;
     private List<MemberResponse> memberResponses;
 
-    public static TeamWithMembersResponse of(Long teamId, String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, List<MemberResponse> memberDtos) {
-        return new TeamWithMembersResponse(teamId, teamName,teamCode, mealTime, isAlarmActive, memberDtos);
+    public static TeamWithMembersResponse of(Long teamId, String teamName, String teamCode, LocalTime mealTime, Boolean isAlarmActive, Boolean isVoteProgress, Long voteId, List<MemberResponse> memberDtos) {
+        return new TeamWithMembersResponse(teamId, teamName, teamCode, mealTime, isAlarmActive, isVoteProgress, voteId, memberDtos);
     }
 
     public static TeamWithMembersResponse from(TeamWithMembersDto dto) {
@@ -36,6 +38,8 @@ public class TeamWithMembersResponse {
                 dto.getTeamCode(),
                 dto.getMealTime(),
                 dto.getIsAlarmActive(),
+                dto.getIsVoteProgress(),
+                dto.getVoteId(),
                 dto.getMemberDtos().stream()
                         .map(MemberResponse::from)
                         .collect(Collectors.toList())

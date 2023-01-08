@@ -2,6 +2,7 @@ package cmc.hackaton.server.common.exception;
 
 import cmc.hackaton.server.common.exception.member.MemberNotFoundException;
 import cmc.hackaton.server.common.exception.team.TeamNotFoundException;
+import cmc.hackaton.server.common.exception.vote.VoteNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -21,6 +22,9 @@ public enum ExceptionType {
 
     // Team
     TEAM_NOT_FOUND_EXCEPTION("3001", "존재하지 않는 그룹입니다.", TeamNotFoundException.class),
+
+    // Vote
+    VOTE_NOT_FOUND_EXCEPTION("4001", "존재하지 않거나 종료된 투표입니다.", VoteNotFoundException.class),
     ;
 
     private final String errorCode;
