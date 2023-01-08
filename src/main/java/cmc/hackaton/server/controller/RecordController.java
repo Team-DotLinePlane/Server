@@ -24,21 +24,21 @@ public class RecordController {
             description = "유저의 개인의 모든 기록 획득"
     )
     @GetMapping
-    public ResponseEntity<RecordListResponse> findRecord(@RequestParam String token) {
+    public ResponseEntity<RecordListResponse> findRecord(@RequestParam long teamId) {
         return ResponseEntity.ok(
-            RecordListResponse.of(recordService.findAllRecords(token).stream()
+            RecordListResponse.of(recordService.findAllRecords(teamId).stream()
                 .map(RecordResponse::from)
                 .collect(Collectors.toList()))
         );
     }
-//
-//    @Operation(
-//            summary = "레코드 생성",
-//            description = "유저 정보(`token`)를 전달받아 레코드를 생성한다"
-//    )
-//    @PostMapping
-//    public ResponseEntity<Void> saveRecord(@RequestParam String token) {
-//        recordService.addRecord(token, request.getTeamCode());
-//        return ResponseEntity.noContent().build();
-//    }
+
+    //@Operation(
+        //    summary = "레코드 생성",
+      //      description = "유저 정보(`token`)를 전달받아 레코드를 생성한다"
+    //)
+    //@PostMapping
+    //public ResponseEntity<Void> saveRecord(@RequestParam String token) {
+     ////   recordService.addRecord(token, request.getTeamCode());
+     //   return ResponseEntity.noContent().build();
+    //}
 }

@@ -2,12 +2,13 @@ package cmc.hackaton.server.service;
 
 import cmc.hackaton.server.common.exception.member.MemberNotFoundException;
 import cmc.hackaton.server.dto.RecordDto;
-import cmc.hackaton.server.entity.Member;
-import cmc.hackaton.server.entity.record.Record;
-import cmc.hackaton.server.repository.MemberRepository;
-import cmc.hackaton.server.repository.RecordRepository;
+import cmc.hackaton.server.entity.Team;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
+import cmc.hackaton.server.repository.TeamRecordRepository;
+import cmc.hackaton.server.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,41 +20,17 @@ import org.springframework.transaction.annotation.Transactional;
 public class RecordService {
 
 
-    private final MemberRepository memberRepository;
+    private final TeamRepository teamRepository;
     //private final TeamRepository teamRepository;
-    private final RecordRepository recordRepository;
+    private final TeamRecordRepository teamRecordRepository;
 
-    public String findAllRecordsByMemberId(String token) {
-        Member member = memberRepository.findByToken(token)
+    public List<RecordDto> findAllRecords(Long teamId) {
+        Team team = teamRepository.findById(teamId)
                 .orElseThrow(MemberNotFoundException::new);
-        List<Record> allByMember = recordRepository.findAllByMember(member);
-        System.out.println(allByMember);
-
-        return token;
-    }
-
-    public List<RecordDto> findAllRecords(String token) {
-        Member member = memberRepository.findByToken(token)
-                .orElseThrow(MemberNotFoundException::new);
-        return recordRepository.findAllByMember(member).stream()
+        return teamRecordRepository.findAllByTeam_Id(teamId).stream()
             .map(RecordDto::from)
             .collect(Collectors.toList());
 
     }
-
-    //public List<RecordDto> findAllRecordsByTeamId(String teamId) {
-       // return recordRepository.findAllByRecords_MemberId(teamId).stream()
-         //       .collect(Collectors.toList());
-    //}
-
-    //@Transactional
-    //public TeamDto addRecord(String memberToken, TeamDto dto) {
-
-   // };
-    //private void validateMemberToken(String memberToken) {
-        //if (!memberRepository.existsByToken(memberToken)) {
-           // throw new MemberNotFoundException();
-        //}
-    //}
 
 }
