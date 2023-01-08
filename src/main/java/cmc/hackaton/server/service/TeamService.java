@@ -35,9 +35,9 @@ public class TeamService {
     public TeamWithMembersDto findTeam(Long teamId) {
         boolean isVoteProgress = false;
         Long voteId = -1L;
-        Optional<Vote> voteOptional = voteRepository.findByTeam_IdOrderByIdDesc(teamId);
-        if (voteOptional.isPresent()) {
-            Vote vote = voteOptional.get();
+        List<Vote> voteList = voteRepository.findByTeam_IdOrderByIdDesc(teamId);
+        if (!voteList.isEmpty()) {
+            Vote vote = voteList.get(0);
             isVoteProgress = !vote.getIsCompleted();
             voteId = vote.getId();
         }
@@ -54,9 +54,9 @@ public class TeamService {
         return teamMemberRepository.findAllByMember_Token(token).stream()
                 .map(teamMember -> {
                     boolean isVoteProgress = false;
-                    Optional<Vote> voteOptional = voteRepository.findByTeam_IdOrderByIdDesc(teamMember.getTeam().getId());
-                    if (voteOptional.isPresent()) {
-                        Vote vote = voteOptional.get();
+                    List<Vote> voteList = voteRepository.findByTeam_IdOrderByIdDesc(teamMember.getTeam().getId());
+                    if (!voteList.isEmpty()) {
+                        Vote vote = voteList.get(0);
                         isVoteProgress = !vote.getIsCompleted();
                     }
                     return TeamDto.from(teamMember.getTeam(), isVoteProgress);
