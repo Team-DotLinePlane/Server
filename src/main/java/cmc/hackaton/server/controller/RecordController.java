@@ -1,16 +1,14 @@
 package cmc.hackaton.server.controller;
 
-import cmc.hackaton.server.dto.response.RecordListResponse;
-import cmc.hackaton.server.dto.response.RecordResponse;
+import cmc.hackaton.server.dto.request.TeamRequest;
+import cmc.hackaton.server.dto.response.*;
 import cmc.hackaton.server.service.RecordService;
+import cmc.hackaton.server.service.TeamService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 
